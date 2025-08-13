@@ -1,0 +1,15 @@
+<h1>Baseball Teams</h1>
+
+<%= link_to "Add New Team", new_team_path, class: "btn" %>
+
+<% if @teams.any? %>
+  <% @teams.each do |team| %>
+    <div class="team-card">
+      <h3><%= link_to "#{team.city} #{team.name}", team_path(team) %></h3>
+      <p>Founded: <%= team.founded %></p>
+      <p>Players: <%= team.players.count %></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>No teams yet. <%= link_to "Create your first team!", new_team_path %></p>
+<% end %>

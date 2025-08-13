@@ -1,0 +1,32 @@
+<h1>Add Player to <%= @team.city %> <%= @team.name %></h1>
+
+<%= form_with(model: [@team, @player], local: true, data: { turbo: false }) do |form| %>
+  <% if @player.errors.any? %>
+    <div style="color: red; background: #ffe6e6; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+      <h4><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h4>
+      <ul>
+        <% @player.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: "e.g., Babe Ruth" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :position %>
+    <%= form.text_field :position, placeholder: "e.g., Pitcher, Catcher, First Base" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :jersey_number %>
+    <%= form.number_field :jersey_number, placeholder: "e.g., 23" %>
+  </div>
+
+  <%= form.submit "Add Player", class: "btn" %>
+  <%= link_to "Cancel", team_path(@team), class: "btn" %>
+<% end %>

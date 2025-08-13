@@ -1,0 +1,21 @@
+<h1><%= @player.name %></h1>
+<h2><%= @team.city %> <%= @team.name %></h2>
+
+<div class="player-details">
+  <p><strong>Position:</strong> <%= @player.position %></p>
+  <p><strong>Jersey Number:</strong> #<%= @player.jersey_number %></p>
+  <p><strong>Team:</strong> <%= @team.city %> <%= @team.name %></p>
+</div>
+
+<%= link_to "← Back to Team", team_path(@team), class: "btn" %>
+<%= button_to "Remove Player",
+      team_player_path(@team, @player),
+      method: :delete,
+      class: "btn btn-danger",
+      form: {
+        data: {
+          controller: "confirm",
+          action: "submit->confirm#submit",
+          confirm_message_value: "Remove #{@player.name} from the team?"
+        }
+      } %>

@@ -1,0 +1,35 @@
+<h1><%= @team.city %> <%= @team.name %></h1>
+<p>Founded: <%= @team.founded %></p>
+
+<%= link_to "← Back to Teams", teams_path, class: "btn" %>
+<%= link_to "Add Player", new_team_player_path(@team), class: "btn" %>
+
+<h2>Roster (<%= @team.players.count %> players)</h2>
+
+<% if @team.players.any? %>
+  <ul class="player-list">
+    <% @team.players.order(:jersey_number).each do |player| %>
+        <li class="player-item">
+          <span>
+              <strong>#<%= player.jersey_number %></strong> 
+              <%= link_to player.name, team_player_path(@team, player) %> - <%= player.position %>
+          </span>
+         <%= button_to "Remove",
+      team_player_path(@team, player),
+      method: :delete,
+      class: "btn btn-danger",
+      form: {
+        data: {
+          controller: "confirm",
+          action: "submit->confirm#submit",
+          confirm_message_value: "Remove #{player.name} from the team?",
+          confirm_confirm_label_value: "Remove",
+          confirm_cancel_label_value: "Cancel"
+        }
+      } %>
+        </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No players on this team yet. <%= link_to "Add the first player!", new_team_player_path(@team) %></p>
+<% end %>

@@ -1,0 +1,30 @@
+# Ignore bundler config
+/.bundle
+
+# Ignore all logfiles and tempfiles
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, coverage, and caches
+*.pid
+*.pid.lock
+/coverage/
+/.cache
+
+# Ignore system files
+.DS_Store
+
+# Ignore local config & secrets
+/config/master.key
+/config/credentials*.yml.enc
+.env
+.env.*
+
+# Ignore node_modules if using JS dependencies
+/node_modules
+
+# Ignore local databases (if using SQLite for dev/test)
+/db/*.sqlite3
+/db/*.sqlite3-journal
