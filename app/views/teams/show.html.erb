@@ -1,5 +1,6 @@
 <h1><%= @team.city %> <%= @team.name %></h1>
 <p>Founded: <%= @team.founded %></p>
+<p>League: <%= @team.league %><p>
 
 <%= link_to "← Back to Teams", teams_path, class: "btn" %>
 <%= link_to "Add Player", new_team_player_path(@team), class: "btn" %>

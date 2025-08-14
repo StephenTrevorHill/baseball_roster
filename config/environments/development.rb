@@ -9,6 +9,17 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  config.cache_classes = false
+
+ config.active_job.queue_adapter = :solid_queue
+
+  # (Optional niceties)
+  config.consider_all_requests_local = true
+  config.action_controller.perform_caching = false
+  config.active_storage.service = :local
+  config.action_mailer.perform_caching = false
+  config.active_support.deprecation = :log
+
   # Show full error reports.
   config.consider_all_requests_local = true
 
